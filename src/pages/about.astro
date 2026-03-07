@@ -1,44 +1,63 @@
 ---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_DESCRIPTION } from '../consts';
 import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
-import Layout from '../layouts/BlogPost.astro';
+import { Image } from 'astro:assets';
 ---
 
-<Layout
-	title="About Justin"
-	description="Practicing accessible, responsive front-end techniques while indulging in a Frutiger Aero aesthetic."
-	pubDate={new Date('March 06 2026')}
-	heroImage={AboutHeroImage}
->
-	<p>
-		Welcome to my personal home on the web. This repository is a digital sandbox where I explore 
-		modern tooling while capturing the spirit of the mid-2000s web.
-	</p>
-
-	<p>
-		<strong>What I'm Experimenting With:</strong>
-	</p>
-	<ul>
-		<li>
-			<strong>Frutiger Aero Aesthetic:</strong> Re-creating the optimism of the mid-2000s (Aero Glass, 
-			glossy gradients, and nature-inspired palettes) using modern, lightweight CSS techniques.
-		</li>
-		<li>
-			<strong>Accessibility & Modern Tooling:</strong> Using the power of Astro 5 to build a static-first 
-			site that remains keyboard and screen-reader accessible despite its glossy appearance.
-		</li>
-		<li>
-			<strong>Digital Anthropology:</strong> Studying how our biological "caveman brains" navigate 
-			the high-speed tension of the digital age.
-		</li>
-	</ul>
-
-	<p>
-		I'm focused on creating a "Single-Window" experience that prioritizes readability and 
-		long-term sustainability. By using clean Markdown for my posts and modular Astro components for 
-		my layout, I can focus on writing and building without being slowed down by library maintenance.
-	</p>
-
-	<p>
-		<em>Stay optimistic, stay glossy.</em>
-	</p>
-</Layout>
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title="About Justin Liu" description={SITE_DESCRIPTION} />
+		<style>
+			.hero-image {
+				width: 100%;
+				margin-bottom: 2rem;
+			}
+			.hero-image img {
+				display: block;
+				margin: 0 auto;
+				border-radius: 16px;
+				box-shadow: var(--box-shadow);
+			}
+			.bio {
+				font-size: 1.15rem;
+				line-height: 1.7;
+				color: #222;
+			}
+			.bio strong {
+				color: #000;
+				font-weight: 700;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="aero-pane">
+				<div class="glossy-header">
+					<h1>Justin Liu</h1>
+				</div>
+				<div class="aero-content">
+					<div class="hero-image">
+						<Image src={AboutHeroImage} alt="" width={1020} height={510} />
+					</div>
+					<div class="bio">
+						<p>
+							I work in <strong>autonomous vehicle tech</strong> — running in-vehicle tests and keeping the stack alive: networking, servers, and the cars themselves.
+							For me, tech isn't just a job. It's the foundation everything else is built on this generation. <strong>Building is how I express.</strong>
+						</p>
+						
+						<p>
+							I've spent years studying design, arts, and cinematography — and all of it feeds into how I think about what I make.
+							I believe you have to love what you do. That's not a slogan; it's a filter.
+						</p>
+					</div>
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
